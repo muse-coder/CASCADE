@@ -225,6 +225,7 @@ def get_seidel_2d(bmax,nmax,seidel_2d_width):
 def get_log(bmax,nmax,log_width):
     b = 1
     while b < bmax:
+
         n = 1
         while n < nmax:
             log_check_conflict(n, b, log_width , log_width - 1)
