@@ -50,15 +50,18 @@ def Log_check_conflict(n, b,d1):
     Log_parameter_set.append(valid_solution)
     return
 
-
+from datetime import datetime 
 def get_Log(bmax,nmax,Log_width):
+    start_t=datetime.now()
     b = 1
     while b <= bmax:
-
         n = 1
         while n <= nmax:
             Log_check_conflict(n, b, Log_width )
             n = n * 2
         b = b * 2
+    end_t=datetime.now()
+    print("Log execute time = %d" %(end_t.microsecond-start_t.microsecond))
+    
     Log_df= pd.DataFrame(Log_parameter_set, columns=['bank_number', 'block_size'], dtype=int)
     Log_df.to_csv('./result/Log.csv')

@@ -60,7 +60,9 @@ def Fdtd_2d_check_conflict(n, b,d1):
     return
 
 
+from datetime import datetime 
 def get_Fdtd_2d (bmax,nmax,Fdtd_2d_width):
+    start_t=datetime.now()
     b = 1
     while b <= bmax:
         n = 1
@@ -68,5 +70,8 @@ def get_Fdtd_2d (bmax,nmax,Fdtd_2d_width):
             Fdtd_2d_check_conflict(n, b, Fdtd_2d_width)
             n = n * 2
         b = b * 2
+    end_t=datetime.now()
+    print("Fdtd_2d execute time = %d" %(end_t.microsecond-start_t.microsecond))
+    
     Fdtd_2d_df = pd.DataFrame(Fdtd_2d_parameter_set, columns=['bank_number', 'block_size'], dtype=int)
     Fdtd_2d_df.to_csv('./result/Fdtd_2d.csv')

@@ -25,8 +25,9 @@ def Bicubic_check_conflict(n, b,d1):
     Bicubic_parameter_set.append(valid_solution)
     return
 
-    
+from datetime import datetime 
 def get_Bicubic(bmax,nmax,Bicubic_width):
+    start_t=datetime.now()
     b = 1
     while b <= bmax:
         n = 1
@@ -34,5 +35,8 @@ def get_Bicubic(bmax,nmax,Bicubic_width):
             Bicubic_check_conflict(n, b, Bicubic_width)
             n = n * 2
         b = b * 2
+    end_t=datetime.now()
+    print("Bicubic execute time = %d" %(end_t.microsecond-start_t.microsecond))
+    
     Bicubic_df = pd.DataFrame(Bicubic_parameter_set, columns=['bank_number', 'block_size'], dtype=int)
     Bicubic_df.to_csv('./result/Bicubic.csv')

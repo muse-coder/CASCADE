@@ -38,7 +38,10 @@ def Seidel_2d_check_conflict(n, b,d1):
     Seidel_2d_parameter_set.append(valid_solution)
     return
 
+
+from datetime import datetime 
 def get_Seidel_2d(bmax,nmax,Seidel_2d_width):
+    start_t=datetime.now()    
     b = 1
     while b <= bmax:
         n = 1
@@ -46,5 +49,8 @@ def get_Seidel_2d(bmax,nmax,Seidel_2d_width):
             Seidel_2d_check_conflict(n, b, Seidel_2d_width )
             n = n * 2
         b = b * 2
+    end_t=datetime.now()
+    print("Seidel_2d execute time = %d" %(end_t.microsecond-start_t.microsecond))
+
     Seidel_2d_df= pd.DataFrame(Seidel_2d_parameter_set, columns=['bank_number', 'block_size'], dtype=int)
     Seidel_2d_df.to_csv('./result/Seidel_2d.csv')

@@ -29,8 +29,9 @@ def Jacobi_2d_check_conflict(n, b,d1):
     Jacobi_2d_parameter_set.append(valid_solution)
     return
 
-
+from datetime import datetime 
 def get_Jacobi_2d(bmax,nmax,Jacobi_2d_width):
+    start_t=datetime.now()
     b = 1
     while b <= bmax:
         n = 1
@@ -38,5 +39,8 @@ def get_Jacobi_2d(bmax,nmax,Jacobi_2d_width):
             Jacobi_2d_check_conflict(n, b, Jacobi_2d_width )
             n = n * 2
         b = b * 2
+    end_t=datetime.now()
+    print("Jacobi execute time = %d" %(end_t.microsecond-start_t.microsecond))
+
     Jacobi_2d_df= pd.DataFrame(Jacobi_2d_parameter_set, columns=['bank_number', 'block_size'], dtype=int)
     Jacobi_2d_df.to_csv('./result/Jacobi_2d.csv')

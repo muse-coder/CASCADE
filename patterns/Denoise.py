@@ -26,7 +26,10 @@ def Denoise_check_conflict(n, b,d1):
     Denoise_parameter_set.append(valid_solution)
     return
 
+from datetime import datetime 
+
 def get_Denoise(bmax,nmax,Denoise_width):
+    start_t=datetime.now()
     b = 1
     while b <= bmax:
         n = 1
@@ -34,5 +37,8 @@ def get_Denoise(bmax,nmax,Denoise_width):
             Denoise_check_conflict(n, b, Denoise_width )
             n = n * 2
         b = b * 2
+    end_t=datetime.now()
+    print("Denoise execute time = %d" %(end_t.microsecond-start_t.microsecond))
+    
     Denoise_df= pd.DataFrame(Denoise_parameter_set, columns=['bank_number', 'block_size'], dtype=int)
     Denoise_df.to_csv('./result/Denoise.csv')

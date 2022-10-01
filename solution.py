@@ -12,7 +12,7 @@ if __name__ == "__main__":
     # block的最大值
     bmax = 2
     # bank的最大值
-    nmax = 8
+    nmax = 32
     if not os.path.exists('./result'):
         os.mkdir('./result')
 
@@ -33,4 +33,4 @@ if __name__ == "__main__":
     Log.get_Log             (bmax=bmax, nmax=nmax , Log_width=Log_width )
     Fdtd_2d.get_Fdtd_2d     (bmax=bmax, nmax=nmax , Fdtd_2d_width=Fdtd_2d_width )
     Sobel.get_Sobel         (bmax=bmax, nmax=nmax , Sobel_width=Sobel_width )
-    Split.get_Split         (bmax=bmax, nmax=nmax , Split_width=Split_width )
+    # Split.get_Split         (bmax=bmax, nmax=nmax , Split_width=Split_width )

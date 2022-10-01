@@ -40,7 +40,9 @@ def Sobel_check_conflict(n, b,d1):
     return
 
 
+from datetime import datetime 
 def get_Sobel (bmax,nmax,Sobel_width):
+    start_t=datetime.now()
     b = 1
     while b <= bmax:
         n = 1
@@ -48,5 +50,8 @@ def get_Sobel (bmax,nmax,Sobel_width):
             Sobel_check_conflict(n, b, Sobel_width)
             n = n * 2
         b = b * 2
+    end_t=datetime.now()
+    print("Sobel execute time = %d" %(end_t.microsecond-start_t.microsecond))
+
     Sobel_df = pd.DataFrame(Sobel_parameter_set, columns=['bank_number', 'block_size'], dtype=int)
     Sobel_df.to_csv('./result/Sobel.csv')
